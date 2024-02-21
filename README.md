@@ -1,1 +1,1 @@
-# engo651Lab4
+This project extends the existing mapping interface of the Calgary building permits website, developed in Lab 3, by incorporating an additional layer that depicts traffic incidents data. Within this enhanced web application, users are empowered to activate or deactivate the visibility of the traffic incidents layer through the utilization of a dedicated layer control mechanism. Irrespective of the active state of the traffic incidents map layer, users retain uninterrupted access to the functionality that enables them to conduct searches for building permits. 
