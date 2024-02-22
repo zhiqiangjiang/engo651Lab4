@@ -29,11 +29,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.6/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.6/dist/MarkerCluster.Default.css">
     <script src="https://unpkg.com/leaflet.markercluster@1.0.6/dist/leaflet.markercluster-src.js"></script>
-    <!-- Adding jQuery -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+   
     <style type="text/css">
         #map{
              height: 650px;
@@ -68,6 +64,18 @@
     <div id="map" style="z-index: 1;"></div>
 
     <script type="text/javascript">
+        $('.input-daterange input').each(function() {
+        console.log("DatePicker being applied to:", this);
+
+        $(this).datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            calendarWeeks : true,
+            clearBtn: true,
+            disableTouchKeyboard: true,
+            toggleActive: true
+            });
+        });
       var basemap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       })
@@ -75,12 +83,23 @@
       var incidents = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
              attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
              maxZoom: 18,
-             id: 'timng/clf0pr2oi000e01nqaoat3lqi',
+             id: 'tomjiang/clswpgotv001h01ra65qn9f7h',
              tileSize: 512,
              zoomOffset: -1,
-             accessToken: 'pk.eyJ1IjoidGltbmciLCJhIjoiY2xmMHBtNThwMDBxejNxcGpoY2c2aWxtNyJ9.2Z3rbpaUVbhqeuhxlfyQ2g'
+             accessToken: 'pk.eyJ1IjoidG9tamlhbmciLCJhIjoiY2xzd2c5cHl4MnhmeDJtb3c0eG42dnNkNCJ9.giGi3qo495sg__Z9EO1w0w'
       });
+      //console.log(incidents)
 
+      //mapbox://styles/tomjiang/clswpgotv001h01ra65qn9f7h
+      // var map = L.map('map').setView([51.032077, -114.052983], 13);
+      // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      //   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      // }).addTo(map);
+      // L.mapbox.styleLayer('mapbox://styles/{username}/{style_id}').addTo(map);
+
+      // https://api.mapbox.com/styles/v1/YOUR_USERNAME/YOUR_STYLE_ID/tiles/256/{z}/{x}/{y}?access_token=YOUR_MAPBOX_ACCESS_TOKEN
+      
+      
       var map = L.map('map', {layers: [basemap, incidents]}).setView([51.032077, -114.052983], 13);
 
       var layer1 = {
@@ -92,7 +111,7 @@
       };
 
       L.control.layers(layer1, layer2).addTo(map);
-
+      
       var oms = new OverlappingMarkerSpiderfier(map);
       var popup = new L.Popup();
       oms.addListener('click', function (marker) {
@@ -148,16 +167,7 @@
             }
         });
 
-      $('.input-daterange input').each(function() {
-        $(this).datepicker({
-            format: 'yyyy-mm-dd',
-            autoclose: true,
-            calendarWeeks : true,
-            clearBtn: true,
-            disableTouchKeyboard: true,
-            toggleActive: true
-            });
-        });
+      
    </script>
 
   </body>
